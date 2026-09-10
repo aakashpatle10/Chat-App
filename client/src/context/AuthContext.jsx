@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import api from '../services/api'
+import { connectSocket, disconnectSocket } from '../services/socket'
 
 const AuthContext = createContext(null)
 
@@ -60,6 +61,17 @@ export const AuthProvider = ({ children }) => {
 
     loadUser()
   }, [])
+
+  useEffect(() => {
+    if (!user) {
+      disconnectSocket()
+      return undefined
+    }
+
+    connectSocket()
+
+    return disconnectSocket
+  }, [user])
 
   return (
     <AuthContext.Provider
