@@ -2,10 +2,10 @@ require("dotenv").config();
 
 const http = require("http");
 const { Server } = require("socket.io");
-const { app, getAllowedOrigins } = require("./app");
-const connectDB = require("./config/db");
-const { connectRedis } = require("./config/redis");
-const setupSocket = require("./socket/socketHandler");
+const { app, getAllowedOrigins } = require("./src/app");
+const connectDB = require("./src/config/db");
+const { connectRedis } = require("./src/config/redis");
+const setupSocket = require("./src/socket/socketHandler");
 
 const PORT = process.env.PORT || 5002;
 const httpServer = http.createServer(app);
